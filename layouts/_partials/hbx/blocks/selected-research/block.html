@@ -1,0 +1,60 @@
+{{ $block := . }}
+
+<section class="selected-research-block">
+  <div class="selected-research-inner">
+
+    {{ with $block.content.title }}
+      <h2 class="selected-research-title">{{ . }}</h2>
+    {{ end }}
+
+    {{ with $block.content.subtitle }}
+      <p class="selected-research-subtitle">{{ . }}</p>
+    {{ end }}
+
+    {{ range $block.content.items }}
+      <article class="research-card">
+
+        <div class="research-card-image">
+          <img src="{{ .image }}" alt="{{ .image_alt | default .title }}">
+        </div>
+
+        <div class="research-card-content">
+
+          {{ with .venue }}
+            <div class="research-card-venue">{{ . }}</div>
+          {{ end }}
+
+          <h3 class="research-card-title">{{ .title }}</h3>
+
+          {{ with .authors }}
+            <p class="research-card-authors">{{ . | safeHTML }}</p>
+          {{ end }}
+
+          {{ with .description }}
+            <p class="research-card-description">{{ . }}</p>
+          {{ end }}
+
+          {{ with .contribution }}
+            <p class="research-card-contribution">
+              <strong>My contribution:</strong> {{ . }}
+            </p>
+          {{ end }}
+
+          {{ with .links }}
+            <div class="research-card-links">
+              {{ range . }}
+                <a href="{{ .url }}"
+                   {{ if strings.HasPrefix .url "http" }}target="_blank" rel="noopener"{{ end }}>
+                  {{ .label }}
+                </a>
+              {{ end }}
+            </div>
+          {{ end }}
+
+        </div>
+
+      </article>
+    {{ end }}
+
+  </div>
+</section>
