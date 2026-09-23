@@ -24,16 +24,16 @@ affiliations:
 links:
 
   - icon: brands/linkedin
+    label: LinkedIn
     url: https://www.linkedin.com/in/hannah-ceballos-sarmiento-49ba452b9/
 
   - icon: academicons/google-scholar
+    label: Google Scholar
     url: https://scholar.google.com/citations?user=KKClorUAAAAJ&hl=es
 
   - icon: academicons/orcid
+    label: ORCID
     url: https://orcid.org/0009-0005-5398-3770
-
-  - icon: envelope
-    url: mailto:h.ceballos@uniandes.edu.co
 
 interests: []
 

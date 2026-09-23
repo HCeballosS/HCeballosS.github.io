@@ -17,6 +17,15 @@
 {{ $hasMeta := or $showDate $showReadTime $showReadMore }}
 {{ $index := .index }}
 {{ $isEvent := eq $item.Type "events" }}
+{{ $isPublication := eq $item.Section "publications" }}
+{{ $hasResearchLink := false }}
+{{ if $isPublication }}
+  {{ range $item.Params.links }}
+    {{ if and .url (or (eq .type "pdf") (eq .type "code") (and (eq .type "source") (strings.Contains .url "doi.org"))) }}
+      {{ $hasResearchLink = true }}
+    {{ end }}
+  {{ end }}
+{{ end }}
 {{ $event_dates := "" }}
 {{ if $isEvent }}
 {{ $event_dates = partial "functions/get_event_dates" $item }}
@@ -48,7 +57,7 @@
         */}}
         {{ $canProcess := and (reflect.IsImageResourceProcessable .) (ne .MediaType.SubType "gif") }}
         {{ if not $canProcess }}
-          <a href="{{ $link }}" {{ $target | safeHTMLAttr }} class="block">
+          {{ if not $isPublication }}<a href="{{ $link }}" {{ $target | safeHTMLAttr }} class="block">{{ end }}
             <img class="w-full h-full transition-transform duration-500 ease-out group-hover:scale-105 {{ if $fill_image }}object-fill{{ else }}object-contain{{ end }}"
                  src="{{ .RelPermalink }}"
                  loading="lazy"
@@ -56,7 +65,7 @@
                  {{ if eq $index 0 }}fetchpriority="high"{{ end }}
                  style="position: absolute; height: 100%; width: 100%; inset: 0px; color: transparent;"
                  alt="{{ $item.Title | plainify }} featured image">
-          </a>
+          {{ if not $isPublication }}</a>{{ end }}
         {{ else }}
           {{ $original_image := "" }}
           {{ if $fill_image }}
@@ -70,7 +79,7 @@
               "sizes" (slice 400 600 800)
               "formats" (slice "avif" "webp" "jpg")
           ) }}
-          <a href="{{ $link }}" {{ $target | safeHTMLAttr }} class="block">
+          {{ if not $isPublication }}<a href="{{ $link }}" {{ $target | safeHTMLAttr }} class="block">{{ end }}
             <img class="w-full h-full transition-transform duration-500 ease-out group-hover:scale-105 {{ if $fill_image }}object-fill{{ else }}object-contain{{ end }}" 
                  srcset="{{ $responsive.srcset }}"
                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
@@ -82,11 +91,11 @@
                  {{ if eq $index 0 }}fetchpriority="high"{{ end }}
                  style="position: absolute; height: 100%; width: 100%; inset: 0px; color: transparent;"
                  alt="{{ $item.Title | plainify }} featured image">
-          </a>
+          {{ if not $isPublication }}</a>{{ end }}
         {{ end }}
       {{ else }}
-        <!-- Fallback gradient using theme colors - make clickable for consistency -->
-        <a href="{{ $link }}" {{ $target | safeHTMLAttr }} class="block w-full h-full">
+        <!-- Fallback gradient using theme colors -->
+        {{ if not $isPublication }}<a href="{{ $link }}" {{ $target | safeHTMLAttr }} class="block w-full h-full">{{ end }}
           <div class="w-full h-full bg-gradient-to-br from-primary-600/40 via-secondary-600/30 to-primary-800/50 flex items-center justify-center transition-all duration-300 group-hover:from-primary-500/50 group-hover:via-secondary-500/40 group-hover:to-primary-700/60">
             <div class="w-16 h-16 rounded-full bg-white/20 backdrop-blur-sm flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
               <svg class="w-8 h-8 text-white/40" fill="currentColor" viewBox="0 0 20 20">
@@ -94,7 +103,7 @@
               </svg>
             </div>
           </div>
-        </a>
+        {{ if not $isPublication }}</a>{{ end }}
       {{end}}
       
       <!-- Subtle overlay for better text contrast (allow clicks to pass through) -->
@@ -103,6 +112,7 @@
 
     <!-- Content Section -->
     <div class="p-8 space-y-4">
+      {{ if not $isPublication }}
       {{ with $item.Params.content_meta }}
         {{ if or .content_type .difficulty }}
         <div class="flex items-center gap-x-4">
@@ -117,9 +127,17 @@
         </div>
         {{ end }}
       {{ end }}
+      {{ end }}
 
       {{ if and $item.Params.tags (gt (len $item.Params.tags) 0) }}
-      <div class="flex items-center gap-2">
+      <div class="research-topic-tags flex items-center gap-2">
+        {{ if $isPublication }}
+        {{ range first 2 ($item.GetTerms "tags") }}
+        <span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold bg-primary-100 text-primary-800 dark:bg-primary-900/40 dark:text-primary-300">
+          {{ .Page.LinkTitle }}
+        </span>
+        {{ end }}
+        {{ else }}
         {{ with index ($item.GetTerms "tags") 0 }}
         <a href="{{ .RelPermalink }}">
           <span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold bg-primary-100 text-primary-800 dark:bg-primary-900/40 dark:text-primary-300">
@@ -127,21 +145,43 @@
           </span>
         </a>
         {{ end }}
+        {{ end }}
       </div>
       {{ end }}
 
-      <h3 id="card-title-{{ $item.File.UniqueID }}" class="text-xl font-bold tracking-tight text-zinc-900 dark:text-zinc-100 group-hover:text-primary-600 dark:group-hover:text-primary-400 transition-colors duration-200 leading-tight">
-        <a href="{{ $link }}" {{ $target | safeHTMLAttr }} class="hover:underline">
+      <h3 id="card-title-{{ $item.File.UniqueID }}" class="text-xl font-bold tracking-tight text-zinc-900 dark:text-zinc-100 {{ if not $isPublication }}group-hover:text-primary-600 dark:group-hover:text-primary-400{{ end }} transition-colors duration-200 leading-tight">
+        {{ if $isPublication }}
           {{ $item.Title }}
-          {{ if $item.Params.external_link }}
-            {{ partial "functions/get_icon" (dict "name" "arrow-top-right-on-square" "attributes" "style=\"height: 1em;\" class=\"inline-flex h-4 w-4 ml-1 align-text-top\"") }}
-          {{ end }}
-        </a>
+        {{ else }}
+          <a href="{{ $link }}" {{ $target | safeHTMLAttr }} class="hover:underline">
+            {{ $item.Title }}
+            {{ if $item.Params.external_link }}
+              {{ partial "functions/get_icon" (dict "name" "arrow-top-right-on-square" "attributes" "style=\"height: 1em;\" class=\"inline-flex h-4 w-4 ml-1 align-text-top\"") }}
+            {{ end }}
+          </a>
+        {{ end }}
       </h3>
       
-      <p class="text-zinc-600 dark:text-zinc-400 text-base leading-relaxed line-clamp-3">
-        {{ (partial "functions/get_summary" $item) | plainify | htmlUnescape | truncate 180 }}
-      </p>
+      {{ if $isPublication }}
+        {{ with $item.Params.authors }}
+        <p class="research-card-authors">
+          {{ range $authorIndex, $author := . }}{{ if $authorIndex }}, {{ end }}{{ $authorSlug := $author | urlize }}{{ if or (eq $authorSlug "me") (eq $authorSlug "hannah-vanessa-ceballos-sarmiento") }}{{ if eq $authorSlug "me" }}{{ $owner := partial "functions/get_author_profile" "me" }}<strong>{{ $owner.title }}</strong>{{ else }}<strong>{{ $author }}</strong>{{ end }}{{ else }}{{ $author }}{{ end }}{{ end }}
+        </p>
+        {{ end }}
+        {{ $year := $item.Date.Format "2006" }}
+        {{ $venue := $item.Params.publication.short_name | default $item.Params.publication.name }}
+        <p class="research-card-venue">{{ $venue }}{{ if not (strings.Contains $venue $year) }} · {{ $year }}{{ end }}</p>
+        {{ with $item.Params.content_meta.content_type }}
+        <p class="research-card-note">{{ . }}</p>
+        {{ end }}
+        {{ with $item.Params.content_meta.collaboration }}
+        <p class="research-card-note">{{ . }}</p>
+        {{ end }}
+      {{ else }}
+        <p class="text-zinc-600 dark:text-zinc-400 text-base leading-relaxed line-clamp-3">
+          {{ (partial "functions/get_summary" $item) | plainify | htmlUnescape | truncate 180 }}
+        </p>
+      {{ end }}
 
       {{ with $item.Params.content_meta.prerequisites }}
         {{ $max := 2 }}
@@ -158,8 +198,9 @@
       {{ end }}
 
       <!-- Metadata section -->
-      {{ if $hasMeta }}
+      {{ if and $hasMeta (or (not $isPublication) $hasResearchLink) }}
       <div class="pt-3 border-t border-zinc-100 dark:border-zinc-800">
+        {{ if not $isPublication }}
         <div class="flex items-center gap-3 text-xs text-zinc-500 dark:text-zinc-500 flex-wrap mb-3">
           {{ if $item.Params.authors }}
           <div class="flex items-center gap-2 min-w-0">
@@ -200,9 +241,10 @@
             <span class="hidden sm:inline whitespace-nowrap">{{ $readTime }} {{ i18n "minute_read" }}</span>
           {{ end }}
         </div>
+        {{ end }}
         
         <!-- Research links -->
-        {{ if $showReadMore }}
+        {{ if and $showReadMore (or (not $isPublication) $hasResearchLink) }}
         <div class="research-action-links pt-3 border-t border-zinc-200/50 dark:border-zinc-700/50">
 
           {{ range $item.Params.links }}
@@ -235,7 +277,7 @@
                  target="_blank"
                  rel="noopener"
                  class="research-action-button">
-                DOI
+                {{ .label | default "DOI" }}
               </a>
               {{ end }}
             {{ end }}
@@ -243,18 +285,20 @@
 
           {{ end }}
 
-          <a href="{{ $link }}"
-             {{ $target | safeHTMLAttr }}
-             class="research-action-button research-action-details">
-            Details
-            <svg class="w-4 h-4" fill="none" stroke="currentColor"
-                 viewBox="0 0 24 24" aria-hidden="true">
-              <path stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    d="M17 8l4 4m0 0l-4 4m4-4H3"/>
-            </svg>
-          </a>
+          {{ if not $isPublication }}
+            <a href="{{ $link }}"
+               {{ $target | safeHTMLAttr }}
+               class="research-action-button research-action-details">
+              Details
+              <svg class="w-4 h-4" fill="none" stroke="currentColor"
+                   viewBox="0 0 24 24" aria-hidden="true">
+                <path stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+              </svg>
+            </a>
+          {{ end }}
 
         </div>
         {{ end }}

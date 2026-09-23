@@ -23,7 +23,7 @@ publication_types:
 
 publication:
   name: "Proceedings of the IEEE/CVF International Conference on Computer Vision Workshops"
-  short_name: "ICCVW 2025"
+  short_name: "Poster · CVAMD Workshop at ICCV 2025"
 
 peer_reviewed: true
 open_access: true
@@ -39,6 +39,7 @@ summary: |
   records through cross-attention-based fusion.
 
 tags:
+  - Echocardiography
   - Multimodal Learning
   - Medical Imaging
   - Clinical Data
@@ -46,6 +47,9 @@ tags:
   - Computer Vision
 
 featured: true
+
+content_meta:
+  collaboration: "In collaboration with Fundación Santa Fe de Bogotá"
 
 links:
   - type: pdf

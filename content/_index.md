@@ -16,7 +16,7 @@ sections:
       text: ''
       button:
         text: Download CV
-        url: uploads/resume.pdf
+        url: uploads/resume.pdf?v=20260923
       headings:
         about: ''
     design:
@@ -54,19 +54,19 @@ sections:
       text: |-
         - **Biomedical Computer Vision**
 
-          Learning representations from medical and histopathology images for clinically and biologically relevant prediction tasks.
+          Learning representations from medical and histopathology images.
 
         - **Multimodal Learning**
 
-          Integrating imaging, molecular, and clinical information to model complementary signals across biomedical modalities.
+          Integrating imaging, molecular, spatial, and clinical data.
 
         - **Foundation & Representation Models**
 
-          Adapting pretrained models and structured representation spaces to data-efficient biomedical applications.
+          Adapting pretrained models for data-efficient biomedical applications.
 
         - **Spatial Transcriptomics**
 
-          Predicting and modeling spatial gene expression from tissue morphology while preserving biological and spatial structure.
+          Predicting spatial gene expression from tissue morphology.
     design:
       columns: '1'
 
@@ -84,42 +84,31 @@ sections:
           - publications
         featured_only: true
     design:
-      view: showcase
+      # The local card partial is styled as the horizontal research showcase.
+      view: card
       columns: 1
 
   # ============================================================
-  # RESEARCH EXPERIENCE
+  # EXPERIENCE
   # ============================================================
   - block: markdown
     id: experience
     content:
-      title: Research Experience
+      title: Experience
       subtitle: ''
       text: |-
         ### Graduate Research Assistant
         **Biomedical Computer Vision Group (BCV), Universidad de los Andes**  
         *Aug. 2024 — Present*
 
-        Research in biomedical artificial intelligence spanning **spatial transcriptomics, medical image computing, multimodal learning, foundation models, and representation learning**. My current work focuses on predicting spatial gene expression from histopathology and developing generalizable representations across heterogeneous spatial transcriptomics datasets.
+        Research in biomedical artificial intelligence spanning **spatial transcriptomics, medical image computing, multimodal learning, foundation models, and representation learning**. My M.Sc. research focuses on developing multimodal and representation-learning methods for **spatial gene-expression prediction from histopathology**, integrating histological, gene-expression, and spatial representations across heterogeneous datasets.
 
         ### Junior Researcher
         **Minciencias — Orquídeas Program**  
         *Jul. 2026 — Present*
 
-        Research on artificial intelligence for biomedical applications, contributing to the development and evaluation of computational methods for multimodal biomedical data.
-    design:
-      columns: '1'
+        Retrain **Microsoft-developed species-classification models** in **Sparrow Studio/SPARROW** to incorporate jaguar as a target class, curate camera-trap imagery, and support the integration of the updated models into **SPARROW devices deployed in the Magdalena Medio region**.
 
-
-  # ============================================================
-  # TEACHING
-  # ============================================================
-  - block: markdown
-    id: teaching
-    content:
-      title: Teaching
-      subtitle: ''
-      text: |-
         ### Graduate Teaching Assistant — Computer Vision I & II
         **Master's Program in Artificial Intelligence, Universidad de los Andes**  
         *Jan. 2026 — May 2026*
@@ -171,6 +160,12 @@ sections:
       title: Honors & Awards
       subtitle: ''
       text: |-
+        #### Academic Distinctions
+
+        ### Selected Representative — Undergraduate Thesis Abstract Series
+        **Universidad Nacional de Colombia**  
+        *2026*
+
         ### Magna Cum Laude — Biomedical Engineering
         **Universidad de los Andes**  
         *2025*
@@ -179,9 +174,11 @@ sections:
         **Universidad de los Andes**  
         *Four consecutive semesters*
 
-        ### Selected Representative — Undergraduate Thesis Abstract Series
-        **Universidad Nacional de Colombia**  
-        *2026*
+        ### Top 15 Academic Performance — Instrumental Music
+        **Universidad Nacional de Colombia**\
+        *Four semesters*
+
+        #### Music Awards
 
         ### Winner — Contra Corriente University Festival
         **Universidad Nacional de Colombia**  
@@ -203,15 +200,7 @@ sections:
       title: Piano
       subtitle: ''
       text: |-
-        Alongside my work in biomedical AI, I am completing a **Bachelor of Music in Piano Performance at Universidad Nacional de Colombia**, where I have developed a strong background as a classical pianist. My musical training has shaped the way I approach complex problems through discipline, analytical thinking, creativity, and attention to detail.
-
-        ### Winner — Contra Corriente University Festival
-        **Universidad Nacional de Colombia**  
-        *2023*
-
-        ### Honorable Mention — IX Pianissimo Festival and Competition
-        **Universidad Nacional de Colombia**  
-        *2022*
+        Alongside my work in biomedical AI, I am completing a **Bachelor of Music in Piano Performance at Universidad Nacional de Colombia** under the guidance of **Professor Miyer Garvin**. I am currently preparing my graduation recital, featuring works by **Bach, Beethoven, Schubert, and Ravel**. Beyond solo performance, I have worked primarily as a collaborative pianist with singers and have participated in ensemble projects. My musical training has shaped the way I approach complex problems through discipline, analytical thinking, creativity, and attention to detail.
     design:
       columns: '1'
 
@@ -225,11 +214,7 @@ sections:
       title: Contact
       subtitle: ''
       text: |-
-        I am open to **research collaborations, academic exchanges, and future PhD or research opportunities** in biomedical artificial intelligence, computer vision, multimodal learning, foundation models, medical image computing, and spatial transcriptomics.
-
-        **Email:** [h.ceballos@uniandes.edu.co](mailto:h.ceballos@uniandes.edu.co)
-
-        **GitHub:** [HCeballosS](https://github.com/HCeballosS)
+        [h.ceballos@uniandes.edu.co](mailto:h.ceballos@uniandes.edu.co)
     design:
       columns: '1'
 

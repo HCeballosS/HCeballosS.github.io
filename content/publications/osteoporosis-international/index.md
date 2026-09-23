@@ -2,8 +2,11 @@
 title: "Restoring skeletal remodeling in antiresorptive-treated patients: clinical outcomes of teriparatide in medication-related osteonecrosis of the jaw"
 
 authors:
-  - A.K. Sarmiento Liévano
-  - me
+  - Ana Karina Sarmiento Liévano
+  - Hannah Vanessa Ceballos Sarmiento
+  - Nicolás Jiménez Vega
+  - Yeisson Alejandro Arias Avila
+  - Maria Paula Monroy Becerra
 
 date: '2026-01-01T00:00:00Z'
 
@@ -12,7 +15,7 @@ publication_types:
 
 publication:
   name: "Osteoporosis International"
-  short_name: "Osteoporos Int"
+  short_name: "Osteoporosis International"
 
 peer_reviewed: true
 open_access: false
@@ -27,12 +30,12 @@ summary: |
   jaw following antiresorptive treatment.
 
 tags:
-  - Osteoporosis
-  - Bone Remodeling
   - Medication-Related Osteonecrosis of the Jaw
-  - Clinical Research
 
 featured: true
+
+content_meta:
+  collaboration: "In collaboration with Universidad Nacional de Colombia"
 
 hugoblox:
   ids:
@@ -43,6 +46,7 @@ links:
     url: ""
 
   - type: source
+    label: Paper
     url: "https://doi.org/10.1007/s00198-026-08150-y"
 
 image:

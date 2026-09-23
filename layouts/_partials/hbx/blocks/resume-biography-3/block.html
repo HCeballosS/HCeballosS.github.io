@@ -318,7 +318,7 @@
               {{ $target = "target=\"_blank\" rel=\"noopener\"" }}
             {{ end }}
             <a href="{{ $linkUrl | safeURL }}" {{ $target | safeHTMLAttr }} 
-               aria-label="{{ $iconName }}"
+               aria-label="{{ $linkLabel | default $iconName }}"
                {{ if $linkLabel }} title="{{ $linkLabel }}"{{ end }}
                class="w-12 h-12 flex items-center justify-center rounded-full bg-white dark:bg-gray-800 text-gray-600 dark:text-gray-400 
                       shadow-md hover:shadow-xl hover:scale-110 hover:-translate-y-1 
@@ -386,7 +386,7 @@
               {{ if not (hasPrefix $button_link "#") }}
                 {{ $button_link = $button_link | relLangURL }}
               {{ end }}
-              {{ if eq (path.Ext $button_link) ".pdf" }}{{ $target = "target=\"_blank\" rel=\"noopener\"" }}{{ end }}
+              {{ if strings.Contains $button_link ".pdf" }}{{ $target = "target=\"_blank\" rel=\"noopener\"" }}{{ end }}
             {{ else if in (slice "http" "https") $scheme }}
               {{ $target = "target=\"_blank\" rel=\"noopener\"" }}
             {{ end }}

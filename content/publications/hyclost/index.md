@@ -15,7 +15,7 @@ publication_types:
 
 publication:
   name: "Medical Image Computing and Computer-Assisted Intervention"
-  short_name: "MICCAI 2026"
+  short_name: "Poster · MICCAI 2026"
 
 peer_reviewed: true
 open_access: true
@@ -33,11 +33,11 @@ summary: |
   transcriptomics data.
 
 tags:
+  - Multimodal Learning
   - Spatial Transcriptomics
   - Histopathology
   - Hyperbolic Learning
   - Representation Learning
-  - Multimodal Learning
 
 featured: true
 
@@ -47,7 +47,7 @@ hugoblox:
 
 links:
   - type: pdf
-    url: "https://arxiv.org/pdf/2609.16207"
+    url: "https://papers.miccai.org/miccai-2026/paper/3824_paper.pdf"
 
   - type: source
     url: "https://arxiv.org/abs/2609.16207"

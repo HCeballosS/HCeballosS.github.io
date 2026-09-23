@@ -3,12 +3,12 @@ title: "Task-Specific Adaptation of Echocardiography Foundation Models for the E
 
 authors:
   - me
-  - N. Andrade
-  - L. Mora-Vaca
-  - J.D. Sarmiento Avila
-  - D. Vega
-  - E.E. Romero Castro
-  - P. Arbeláez
+  - Nicolás Andrade
+  - Leidy Mora-Vaca
+  - Juan D. Sarmiento Avila
+  - Daniela Vega
+  - Edgar Eduardo Romero Castro
+  - Pablo Arbeláez
 
 date: '2026-09-01T00:00:00Z'
 
@@ -17,7 +17,7 @@ publication_types:
 
 publication:
   name: "EchoRisk-MICCAI Cardio-Oncology Challenge / STACOM"
-  short_name: "EchoRisk-MICCAI 2026"
+  short_name: "Poster · EchoRisk-MICCAI 2026 / STACOM"
 
 peer_reviewed: true
 open_access: false
@@ -42,9 +42,13 @@ tags:
 
 featured: true
 
+content_meta:
+  content_type: Methodology Paper
+  collaboration: "In collaboration with Universidad Nacional de Colombia"
+
 links:
   - type: pdf
-    url: ""
+    url: "https://papers.miccai.org/miccai-2026-sat/paper/EchoRisk2026_012.pdf"
 
   - type: code
     url: ""
