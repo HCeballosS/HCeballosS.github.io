@@ -132,9 +132,9 @@
       {{ if and $item.Params.tags (gt (len $item.Params.tags) 0) }}
       <div class="research-topic-tags flex items-center gap-2">
         {{ if $isPublication }}
-        {{ range first 2 ($item.GetTerms "tags") }}
+        {{ range first 2 $item.Params.tags }}
         <span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold bg-primary-100 text-primary-800 dark:bg-primary-900/40 dark:text-primary-300">
-          {{ .Page.LinkTitle }}
+          {{ . }}
         </span>
         {{ end }}
         {{ else }}

@@ -57,6 +57,10 @@ static/pagefind/
 # Windows
 Thumbs.db
 Desktop.ini
+*:Zone.Identifier
+
+# Local CV source files (the published copy lives in static/uploads/resume.pdf)
+/Rezume*.pdf
 
 # Linux
 *~
@@ -67,3 +71,5 @@ Desktop.ini
 
 *.log
 npm-debug.log*
+*.TMP
+*.bak

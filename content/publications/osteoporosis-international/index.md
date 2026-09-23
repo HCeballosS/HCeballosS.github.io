@@ -54,8 +54,6 @@ image:
   focal_point: "Center"
   preview_only: false
 
-projects: []
-
 slides: ""
 ---
 

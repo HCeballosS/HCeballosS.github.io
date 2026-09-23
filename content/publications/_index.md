@@ -9,4 +9,13 @@ view: citation
 banner:
   caption: ''
   image: ''
+
+# Publication records are used by the homepage collection only.
+build:
+  render: never
+
+cascade:
+  build:
+    render: never
+    list: always
 ---
